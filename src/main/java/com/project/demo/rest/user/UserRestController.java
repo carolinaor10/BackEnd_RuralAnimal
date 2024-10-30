@@ -4,6 +4,7 @@ import com.project.demo.logic.entity.http.GlobalResponseHandler;
 import com.project.demo.logic.entity.http.Meta;
 import com.project.demo.logic.entity.user.User;
 import com.project.demo.logic.entity.user.UserRepository;
+import com.project.demo.logic.utils.EmailService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,6 +28,9 @@ public class UserRestController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
@@ -93,4 +97,29 @@ public class UserRestController {
         return (User) authentication.getPrincipal();
     }
 
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody String usuario) {
+        System.out.println(usuario);
+        System.out.println("usuario");
+        try {
+            // Generar clave secreta única y OTP
+            // String secretKey = KeyGeneration.generateRandomKey(6);
+            // String otpValue = new Totp(secretKey).now();
+
+            // String userEmail = userService.generateOtpAndGetEmail(usuario, otpValue); // Guardar OTP y obtener email del usuario
+            // if (userEmail != null) {
+                String asunto = "Nueva contraseña de autenticación";
+                // String cuerpoMensaje = "Estimado cliente, ... " + otpValue + " ..."; // Completa el mensaje
+                String cuerpoMensaje = "Prueba";
+                // Enviar correo
+                emailService.sendEmail("ruralanimalcr@gmail.com", "saulsjlmclash@gmail.com", asunto, cuerpoMensaje);
+
+                return ResponseEntity.ok().body("Correo enviado");
+            // } else {
+                // return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
+            // }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
+    }
 }
