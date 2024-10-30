@@ -49,7 +49,7 @@ public class TblUser implements UserDetails {
     private LocalDate birthDate;
 
     @Column(name = "Phone_Number")
-    private String phoneNumber;
+    private String  phoneNumber;
 
     // Remember to change the nullable status to false,
     // per now is true just for testing purposes.
