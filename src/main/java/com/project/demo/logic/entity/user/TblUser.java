@@ -1,5 +1,6 @@
 package com.project.demo.logic.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.demo.logic.entity.direction.TblDirection;
 import com.project.demo.logic.entity.role.TblRole;
 import jakarta.persistence.*;
@@ -57,11 +58,11 @@ public class TblUser implements UserDetails {
 /*
     // Remember to change the nullable status to false,
     // per now is true just for testing purposes.
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "Direction_Id", nullable = true)
     private TblDirection direction;*/
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Role_Id", nullable = false)
     private TblRole role;
 
