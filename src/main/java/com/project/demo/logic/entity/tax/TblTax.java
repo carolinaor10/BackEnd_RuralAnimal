@@ -1,14 +1,12 @@
 package com.project.demo.logic.entity.tax;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "TBL_Tax")
 public class TblTax {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Tax_Id", nullable = false)
     private Long id;
 

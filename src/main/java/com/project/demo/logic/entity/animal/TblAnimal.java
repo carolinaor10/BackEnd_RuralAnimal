@@ -1,9 +1,6 @@
 package com.project.demo.logic.entity.animal;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -11,6 +8,7 @@ import java.time.LocalDate;
 @Table(name = "TBL_Animal")
 public class TblAnimal {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Animal_Id", nullable = false)
     private Long id;
 

@@ -3,26 +3,39 @@ package com.project.demo.logic.entity.user;
 import com.project.demo.logic.entity.direction.TblDirection;
 import com.project.demo.logic.entity.role.TblRole;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "TBL_User")
-public class TblUser {
+public class TblUser implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "User_Id", nullable = false)
     private Long id;
 
+    @Column(name = "Name", nullable = false)
+    private String name;
+    
     @Column(name = "Last_Name1", nullable = false)
     private String lastName1;
 
     @Column(name = "Last_Name2")
     private String lastName2;
 
-    @Column(name = "Identification", nullable = false)
+    // Remember to change the nullable status to false,
+    // per now is true just for testing purposes.
+    @Column(name = "Identification", nullable = true)
     private String identification;
 
-    @Column(name = "VCO", nullable = false)
+    // Remember to change the nullable status to false,
+    // per now is true just for testing purposes.
+    @Column(name = "VCO", nullable = true)
     private String vco;
 
     @Column(name = "Email", nullable = false)
@@ -37,16 +50,51 @@ public class TblUser {
     @Column(name = "Phone_Number")
     private String phoneNumber;
 
-    @Column(name = "State", nullable = false, length = 2)
+    // Remember to change the nullable status to false,
+    // per now is true just for testing purposes.
+    @Column(name = "State", nullable = true, length = 2)
     private String state;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Direction_Id", nullable = false)
-    private TblDirection direction;
+/*
+    // Remember to change the nullable status to false,
+    // per now is true just for testing purposes.
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "Direction_Id", nullable = true)
+    private TblDirection direction;*/
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "Role_Id", nullable = false)
     private TblRole role;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role.getTitle().toString());
+        return List.of(authority);
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
 
     public Long getId() {
         return id;
@@ -54,6 +102,12 @@ public class TblUser {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {return name;}
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLastName1() {
@@ -96,6 +150,7 @@ public class TblUser {
         this.email = email;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
@@ -127,21 +182,22 @@ public class TblUser {
     public void setState(String state) {
         this.state = state;
     }
-
+/*
     public TblDirection getDirection() {
         return direction;
     }
 
     public void setDirection(TblDirection direction) {
         this.direction = direction;
-    }
+    }*/
 
     public TblRole getRole() {
         return role;
     }
 
-    public void setRole(TblRole role) {
+    public TblUser setRole(TblRole role) {
         this.role = role;
+        return this;
     }
 
 }

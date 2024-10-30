@@ -1,14 +1,12 @@
 package com.project.demo.logic.entity.veterinary;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "TBL_Veterinary")
 public class TblVeterinary {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Veterinary_Id", nullable = false)
     private Long id;
 

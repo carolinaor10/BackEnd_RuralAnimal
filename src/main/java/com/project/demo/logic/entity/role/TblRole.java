@@ -1,19 +1,19 @@
 package com.project.demo.logic.entity.role;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "TBL_Role")
 public class TblRole {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Role_Id", nullable = false)
     private Long id;
 
-    @Column(name = "Title", nullable = false)
-    private String title;
+    @Column(name = "Title", unique = true, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private RoleEnum title;
+
 
     @Column(name = "Description", nullable = false)
     private String description;
@@ -26,11 +26,11 @@ public class TblRole {
         this.id = id;
     }
 
-    public String getTitle() {
+    public RoleEnum getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(RoleEnum title) {
         this.title = title;
     }
 

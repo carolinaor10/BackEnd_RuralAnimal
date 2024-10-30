@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 @Table(name = "TBL_3D_Model")
 public class Tbl3dModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "C_3D_Model_Id", nullable = false)
     private Long id;
 

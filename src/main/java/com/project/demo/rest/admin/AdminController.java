@@ -1,9 +1,9 @@
 package com.project.demo.rest.admin;
 
-import com.project.demo.logic.entity.rol.Role;
-import com.project.demo.logic.entity.rol.RoleEnum;
-import com.project.demo.logic.entity.rol.RoleRepository;
-import com.project.demo.logic.entity.user.User;
+import com.project.demo.logic.entity.role.RoleEnum;
+import com.project.demo.logic.entity.role.TblRole;
+import com.project.demo.logic.entity.role.TblRoleRepository;
+import com.project.demo.logic.entity.user.TblUser;
 import com.project.demo.logic.entity.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,22 +23,24 @@ public class AdminController {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private TblRoleRepository roleRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @PostMapping
     @PreAuthorize("hasRole('SUPER_ADMIN')")
-    public User createAdministrator(@RequestBody User newAdminUser) {
-        Optional<Role> optionalRole = roleRepository.findByName(RoleEnum.ADMIN);
+    public TblUser createAdministrator(@RequestBody TblUser newAdminUser) {
+        Optional<TblRole> optionalRole = roleRepository.findByTitle(RoleEnum.ADMIN);
 
         if (optionalRole.isEmpty()) {
             return null;
         }
 
-        var user = new User();
+        var user = new TblUser();
         user.setName(newAdminUser.getName());
+        user.setLastName1(newAdminUser.getLastName1());
+        user.setLastName1(newAdminUser.getLastName2());
         user.setEmail(newAdminUser.getEmail());
         user.setPassword(passwordEncoder.encode(newAdminUser.getPassword()));
         user.setRole(optionalRole.get());

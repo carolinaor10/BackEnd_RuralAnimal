@@ -1,4 +1,6 @@
 package com.project.demo.logic.entity.publication;
 
-public interface TblPublicationRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface TblPublicationRepository extends CrudRepository<TblPublication, Integer> {
 }

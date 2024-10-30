@@ -1,4 +1,4 @@
-package com.project.demo.logic.entity.rol;
+package com.project.demo.logic.entity.role;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -10,10 +10,10 @@ import java.util.Optional;
 
 @Component
 public class RoleSeeder implements ApplicationListener<ContextRefreshedEvent> {
-    private final RoleRepository roleRepository;
+    private final TblRoleRepository roleRepository;
 
 
-    public RoleSeeder(RoleRepository roleRepository) {
+    public RoleSeeder(TblRoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
 
@@ -31,14 +31,14 @@ public class RoleSeeder implements ApplicationListener<ContextRefreshedEvent> {
         );
 
         Arrays.stream(roleNames).forEach((roleName) -> {
-            Optional<Role> optionalRole = roleRepository.findByName(roleName);
+            Optional<TblRole> optionalRole = roleRepository.findByTitle(roleName);
 
             optionalRole.ifPresentOrElse(System.out::println, () -> {
-                Role roleToCreate = new Role();
+                TblRole roleToCreate = new TblRole();
 
-                roleToCreate.setName(roleName);
+                roleToCreate.setTitle(roleName);
                 roleToCreate.setDescription(roleDescriptionMap.get(roleName));
-
+                //
                 roleRepository.save(roleToCreate);
             });
         });

@@ -1,14 +1,12 @@
 package com.project.demo.logic.entity.direction;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "TBL_Direction")
 public class TblDirection {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Direction_Id", nullable = false)
     private Long id;
 

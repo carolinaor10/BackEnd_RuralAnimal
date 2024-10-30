@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 @Table(name = "TBL_Notification")
 public class TblNotification {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Notification_Id", nullable = false)
     private Long id;
 

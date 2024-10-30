@@ -1,5 +1,5 @@
 package com.project.demo.logic.entity.rol;
-
+/*
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -69,3 +69,4 @@ public class Role {
         this.updatedAt = updatedAt;
     }
 }
+*/

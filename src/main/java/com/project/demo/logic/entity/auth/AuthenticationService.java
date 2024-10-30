@@ -1,6 +1,6 @@
 package com.project.demo.logic.entity.auth;
 
-import com.project.demo.logic.entity.user.User;
+import com.project.demo.logic.entity.user.TblUser;
 import com.project.demo.logic.entity.user.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,7 +26,7 @@ public class AuthenticationService {
     }
 
 
-    public User authenticate(User input) {
+    public TblUser authenticate(TblUser input) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         input.getEmail(),

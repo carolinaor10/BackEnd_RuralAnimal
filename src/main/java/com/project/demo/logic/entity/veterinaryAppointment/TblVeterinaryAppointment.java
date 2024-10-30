@@ -11,6 +11,7 @@ import java.time.Instant;
 @Table(name = "TBL_Veterinary_Appointment")
 public class TblVeterinaryAppointment {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Veterinary_Appointment_Id", nullable = false)
     private Long id;
 

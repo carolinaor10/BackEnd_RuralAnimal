@@ -6,14 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long>  {
-    @Query("SELECT u FROM User u WHERE LOWER(u.name) LIKE %?1%")
-    List<User> findUsersWithCharacterInName(String character);
+public interface UserRepository extends JpaRepository<TblUser, Long>  {
+    @Query("SELECT u FROM TblUser u WHERE LOWER(u.name) LIKE %?1%")
+    List<TblUser> findUsersWithCharacterInName(String character);
 
-    @Query("SELECT u FROM User u WHERE u.name = ?1")
-    Optional<User> findByName(String name);
+    @Query("SELECT u FROM TblUser u WHERE u.name = ?1")
+    Optional<TblUser> findByName(String name);
 
-    Optional<User> findByLastname(String lastname);
+    /*Optional<TblUser> findByLastname(String lastName1);*/
 
-    Optional<User> findByEmail(String email);
+    Optional<TblUser> findByEmail(String email);
 }

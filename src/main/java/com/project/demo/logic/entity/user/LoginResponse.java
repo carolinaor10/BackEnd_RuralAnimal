@@ -3,7 +3,7 @@ package com.project.demo.logic.entity.user;
 public class LoginResponse {
     private String token;
 
-    private User authUser;
+    private TblUser authUser;
 
     private long expiresIn;
 
@@ -23,11 +23,11 @@ public class LoginResponse {
         this.expiresIn = expiresIn;
     }
 
-    public User getAuthUser() {
+    public TblUser getAuthUser() {
         return authUser;
     }
 
-    public void setAuthUser(User authUser) {
+    public void setAuthUser(TblUser authUser) {
         this.authUser = authUser;
     }
 }

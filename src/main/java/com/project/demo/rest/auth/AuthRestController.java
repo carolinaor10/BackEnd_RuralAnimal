@@ -2,11 +2,12 @@ package com.project.demo.rest.auth;
 
 import com.project.demo.logic.entity.auth.AuthenticationService;
 import com.project.demo.logic.entity.auth.JwtService;
-import com.project.demo.logic.entity.rol.Role;
-import com.project.demo.logic.entity.rol.RoleEnum;
-import com.project.demo.logic.entity.rol.RoleRepository;
+
+import com.project.demo.logic.entity.role.RoleEnum;
+import com.project.demo.logic.entity.role.TblRole;
+import com.project.demo.logic.entity.role.TblRoleRepository;
 import com.project.demo.logic.entity.user.LoginResponse;
-import com.project.demo.logic.entity.user.User;
+import com.project.demo.logic.entity.user.TblUser;
 import com.project.demo.logic.entity.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class AuthRestController {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private TblRoleRepository roleRepository;
 
 
 
@@ -44,8 +45,8 @@ public class AuthRestController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> authenticate(@RequestBody User user) {
-        User authenticatedUser = authenticationService.authenticate(user);
+    public ResponseEntity<LoginResponse> authenticate(@RequestBody TblUser user) {
+        TblUser authenticatedUser = authenticationService.authenticate(user);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
@@ -53,7 +54,7 @@ public class AuthRestController {
         loginResponse.setToken(jwtToken);
         loginResponse.setExpiresIn(jwtService.getExpirationTime());
 
-        Optional<User> foundedUser = userRepository.findByEmail(user.getEmail());
+        Optional<TblUser> foundedUser = userRepository.findByEmail(user.getEmail());
 
         foundedUser.ifPresent(loginResponse::setAuthUser);
 
@@ -61,20 +62,20 @@ public class AuthRestController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestBody User user) {
-        Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
+    public ResponseEntity<?> registerUser(@RequestBody TblUser user) {
+        Optional<TblUser> existingUser = userRepository.findByEmail(user.getEmail());
         if (existingUser.isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already in use");
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Optional<Role> optionalRole = roleRepository.findByName(RoleEnum.USER);
+        Optional<TblRole> optionalRole = roleRepository.findByTitle(RoleEnum.USER);
 
         if (optionalRole.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Role not found");
         }
         user.setRole(optionalRole.get());
-        User savedUser = userRepository.save(user);
+        TblUser savedUser = userRepository.save(user);
         return ResponseEntity.ok(savedUser);
     }
 

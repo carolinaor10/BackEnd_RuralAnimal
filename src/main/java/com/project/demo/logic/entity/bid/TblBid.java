@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 @Table(name = "TBL_Bid")
 public class TblBid {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Bid_Id", nullable = false)
     private Long id;
 
