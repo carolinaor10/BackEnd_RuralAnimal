@@ -18,11 +18,11 @@ public class TblBill {
     @Column(name = "Total", nullable = false)
     private Long total;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Tax_Id", nullable = false)
     private TblTax tax;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Detail_Id", nullable = false)
     private TblDetail detail;
 

@@ -17,7 +17,7 @@ public class Tbl3dModel {
     @Column(name = "Url", nullable = false)
     private String url;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Animal_Id", nullable = false)
     private TblAnimal animal;
 

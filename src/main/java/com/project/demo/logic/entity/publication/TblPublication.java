@@ -57,11 +57,11 @@ public class TblPublication {
     @Column(name = "Creation_Date", nullable = false)
     private Instant creationDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Direction_Id", nullable = false)
     private TblDirection direction;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "User_Id", nullable = false)
     private TblUser user;
 
