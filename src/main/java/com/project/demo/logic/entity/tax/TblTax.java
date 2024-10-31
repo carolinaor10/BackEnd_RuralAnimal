@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "TBL_Tax")
 public class TblTax {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Tax_Id", nullable = false)
     private Long id;
 

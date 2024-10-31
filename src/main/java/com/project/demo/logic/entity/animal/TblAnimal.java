@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Table(name = "TBL_Animal")
 public class TblAnimal {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Animal_Id", nullable = false)
     private Long id;
 

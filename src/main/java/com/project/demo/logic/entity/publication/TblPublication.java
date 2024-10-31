@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Table(name = "TBL_Publication")
 public class TblPublication {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Publication_Id", nullable = false)
     private Long id;
 
@@ -36,16 +36,16 @@ public class TblPublication {
     @Column(name = "SENASA_Certificate", nullable = false)
     private String senasaCertificate;
 
-    @Column(name = "Price", nullable = false)
+    @Column(name = "Price", nullable = true)
     private Long price;
 
     @Column(name = "Start_Date")
     private LocalDate startDate;
 
-    @Column(name = "End_Date", nullable = false)
+    @Column(name = "End_Date")
     private LocalDate endDate;
 
-    @Column(name = "Minimum_Increase", nullable = false)
+    @Column(name = "Minimum_Increase", nullable = true)
     private Integer minimumIncrease;
 
     @Column(name = "Type", nullable = false)
