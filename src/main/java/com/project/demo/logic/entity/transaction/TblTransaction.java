@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 @Table(name = "TBL_Transaction")
 public class TblTransaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Transaction_Id", nullable = false)
     private Long id;
 

@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Table(name = "TBL_Transport")
 public class TblTransport {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Transport_Id", nullable = false)
     private Long id;
 

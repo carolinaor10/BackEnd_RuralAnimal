@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Table(name = "TBL_Publication")
 public class TblPublication {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Publication_Id", nullable = false)
     private Long id;
 
