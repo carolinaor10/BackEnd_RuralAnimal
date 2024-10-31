@@ -7,14 +7,14 @@ import jakarta.persistence.*;
 @Table(name = "TBL_Transport")
 public class TblTransport {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Transport_Id", nullable = false)
     private Long id;
 
     @Column(name = "State", nullable = false)
     private String state;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Bill_Id", nullable = false)
     private TblBill bill;
 

@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Table(name = "TBL_Detail")
 public class TblDetail {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Detail_Id", nullable = false)
     private Long id;
 
@@ -17,7 +17,7 @@ public class TblDetail {
     @Column(name = "Price", nullable = false)
     private Long price;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Transaction_Id", nullable = false)
     private TblTransaction transaction;
 

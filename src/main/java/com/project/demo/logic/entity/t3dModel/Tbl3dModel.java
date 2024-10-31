@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Table(name = "TBL_3D_Model")
 public class Tbl3dModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "C_3D_Model_Id", nullable = false)
     private Long id;
 
@@ -17,7 +17,7 @@ public class Tbl3dModel {
     @Column(name = "Url", nullable = false)
     private String url;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Animal_Id", nullable = false)
     private TblAnimal animal;
 

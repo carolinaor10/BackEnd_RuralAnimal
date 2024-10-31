@@ -7,14 +7,14 @@ import jakarta.persistence.*;
 @Table(name = "TBL_Photo")
 public class TblPhoto {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Photo_Id", nullable = false)
     private Long id;
 
     @Column(name = "Url", nullable = false)
     private String url;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Publication_Id")
     private TblPublication publication;
 

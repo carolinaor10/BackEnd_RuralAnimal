@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 @Table(name = "TBL_Notification")
 public class TblNotification {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Notification_Id", nullable = false)
     private Long id;
 
@@ -21,11 +21,11 @@ public class TblNotification {
     @Column(name = "Type", nullable = false)
     private String type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Publication_Id")
     private TblPublication publication;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "User_Id", nullable = false)
     private TblUser user;
 

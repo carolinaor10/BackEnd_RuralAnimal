@@ -8,18 +8,18 @@ import jakarta.persistence.*;
 @Table(name = "TBL_Bid")
 public class TblBid {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Bid_Id", nullable = false)
     private Long id;
 
     @Column(name = "Bid_Ammount", nullable = false)
     private Long bidAmmount;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "User_Id", nullable = false)
     private TblUser user;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Publication_Id", nullable = false)
     private TblPublication publication;
 

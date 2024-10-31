@@ -11,7 +11,7 @@ import java.time.Instant;
 @Table(name = "TBL_Veterinary_Appointment")
 public class TblVeterinaryAppointment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Veterinary_Appointment_Id", nullable = false)
     private Long id;
 
@@ -24,15 +24,15 @@ public class TblVeterinaryAppointment {
     @Column(name = "State", nullable = false)
     private String state;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Notification_Id")
     private TblNotification notification;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Veterinary_Id", nullable = false)
     private TblVeterinary veterinary;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "User_Id", nullable = false)
     private TblUser user;
 
