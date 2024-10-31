@@ -36,10 +36,11 @@ public class TblUser implements UserDetails {
 
     // Remember to change the nullable status to false,
     // per now is true just for testing purposes.
+    //CARO: creo que esto debe poder quedar nulo, ya que los compradores no tienen esto (?)
     @Column(name = "VCO", nullable = true)
     private String vco;
 
-    @Column(name = "Email", nullable = false)
+    @Column(name = "Email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "Password", nullable = false)
