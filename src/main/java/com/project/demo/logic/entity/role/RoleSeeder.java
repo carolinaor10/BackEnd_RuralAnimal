@@ -10,10 +10,12 @@ import java.util.Optional;
 
 @Component
 public class RoleSeeder implements ApplicationListener<ContextRefreshedEvent> {
+
     private final TblRoleRepository roleRepository;
 
 
     public RoleSeeder(TblRoleRepository roleRepository) {
+
         this.roleRepository = roleRepository;
     }
 
@@ -23,22 +25,27 @@ public class RoleSeeder implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     private void loadRoles() {
-        RoleEnum[] roleNames = new RoleEnum[] { RoleEnum.USER, RoleEnum.ADMIN, RoleEnum.SUPER_ADMIN };
+        RoleEnum[] roleTitles = new RoleEnum[] { RoleEnum.SELLER, RoleEnum.BUYER, RoleEnum.ADMIN, RoleEnum.SUPER_ADMIN };
         Map<RoleEnum, String> roleDescriptionMap = Map.of(
-                RoleEnum.USER, "Default user role",
+                RoleEnum.SELLER, "Seller user role",
+                RoleEnum.BUYER, "Buyer user role",
                 RoleEnum.ADMIN, "Administrator role",
                 RoleEnum.SUPER_ADMIN, "Super Administrator role"
         );
 
-        Arrays.stream(roleNames).forEach((roleName) -> {
-            Optional<TblRole> optionalRole = roleRepository.findByTitle(roleName);
+
+        Arrays.stream(roleTitles).forEach((roleTitle) -> {
+            Optional<TblRole> optionalRole = roleRepository.findByTitle(roleTitle);
+
 
             optionalRole.ifPresentOrElse(System.out::println, () -> {
                 TblRole roleToCreate = new TblRole();
 
-                roleToCreate.setTitle(roleName);
-                roleToCreate.setDescription(roleDescriptionMap.get(roleName));
-                //
+
+                roleToCreate.setTitle(roleTitle);
+                roleToCreate.setDescription(roleDescriptionMap.get(roleTitle));
+
+
                 roleRepository.save(roleToCreate);
             });
         });
