@@ -21,11 +21,11 @@ public class TblNotification {
     @Column(name = "Type", nullable = false)
     private String type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Publication_Id")
     private TblPublication publication;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "User_Id", nullable = false)
     private TblUser user;
 

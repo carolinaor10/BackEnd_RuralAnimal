@@ -14,7 +14,7 @@ public class TblTransport {
     @Column(name = "State", nullable = false)
     private String state;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Bill_Id", nullable = false)
     private TblBill bill;
 

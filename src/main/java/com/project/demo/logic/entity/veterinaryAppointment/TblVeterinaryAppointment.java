@@ -24,15 +24,15 @@ public class TblVeterinaryAppointment {
     @Column(name = "State", nullable = false)
     private String state;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Notification_Id")
     private TblNotification notification;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Veterinary_Id", nullable = false)
     private TblVeterinary veterinary;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "User_Id", nullable = false)
     private TblUser user;
 

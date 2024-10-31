@@ -15,11 +15,11 @@ public class TblTransaction {
     @Column(name = "Status", nullable = false)
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "User_Id", nullable = false)
     private TblUser user;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Publication_Id", nullable = false)
     private TblPublication publication;
 

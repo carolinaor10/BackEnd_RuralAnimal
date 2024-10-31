@@ -15,11 +15,11 @@ public class TblBid {
     @Column(name = "Bid_Ammount", nullable = false)
     private Long bidAmmount;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "User_Id", nullable = false)
     private TblUser user;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "Publication_Id", nullable = false)
     private TblPublication publication;
 

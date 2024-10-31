@@ -14,7 +14,7 @@ public class TblPhoto {
     @Column(name = "Url", nullable = false)
     private String url;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Publication_Id")
     private TblPublication publication;
 
